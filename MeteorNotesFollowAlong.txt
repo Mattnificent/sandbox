@@ -1,4 +1,9 @@
 
+###################################################################
+# Chapters 1 & 2: 
+###################################################################
+
+
 # clone github repo
 #---------------------------------------------------
 git clone https://github.com/Mattnificent/sandbox.git
@@ -12,40 +17,99 @@ git add microscope
 git commit -m "meteor create microscope; git add microscope"
 
 
-# subsequent add's
+# Folder Rearrangement
 #---------------------------------------------------
 
 mkdir client
-echo "This directory only runs on the client." > client/README
+echo "This directory only runs on the client." > client/README.TXT
 
 mkdir server
-echo "This directory only runs on the server." > server/README
+echo "This directory only runs on the server." > server/README.TXT
 
 mkdir public
-echo "This directory is for static assets (fonts, images, etc.)." > public/README
+echo "This directory is for static assets (fonts, images, etc.)." > public/README.TXT
 
 mkdir lib
-echo "This directory is loaded before anything else" > lib/README
+echo "This directory is loaded before anything else" > lib/README.TXT
 
 cd client
 touch main.html
 touch main.js
-echo "main.* file is loaded after everything else." >> README
+echo "main.* file is loaded after everything else." >> README.TXT
 
 mkdir stylesheets
 nano stylesheets/style.css
 
-###### Copy the stylesheet	######
-###### ctrl + v into nano	######
-###### ctrl + x to exit		######
-###### y to save			######
-
+###### Copy the stylesheet		######
+###### ctrl + v into nano		######
+###### ctrl + x to exit			######
+###### y to save				######
+###### enter to accept filename	######
 cd ..
 
 git add -A
 git commit -m "Re-arranged file structure."
 git push
 
+
+###################################################################
+# Chapter 3: Templates
+#
+#	Learn about Meteor's templating language, Spacebars.
+#	Create your first three templates.
+#	Learn how Meteor managers work.
+#	Get a basic prototype working with static data.
+###################################################################
+
+cd client
+nano main.html
+
+###### Copy the HTML			######
+###### ctrl + v into nano		######
+###### ctrl + x to exit			######
+###### y to save				######
+###### enter to accept filename	######
+
+mkdir templates
+cd templates
+mkdir posts
+cd posts
+
+nano posts_list.html
+
+###### Copy the HTML			######
+###### ctrl + v into nano		######
+###### ctrl + x to exit			######
+###### y to save				######
+###### enter to accept filename	######
+
+nano post_item.html
+
+###### Copy the HTML			######
+###### ctrl + v into nano		######
+###### ctrl + x to exit			######
+###### y to save				######
+###### enter to accept filename	######
+
+
+nano posts_list.js
+
+###### Copy the HTML			######
+###### ctrl + v into nano		######
+###### ctrl + x to exit			######
+###### y to save				######
+###### enter to accept filename	######
+
+
+# Resolve conflict:
+#######################################
+git pull
+git commit -m "merging conflict"
+
+
+git add -A
+git commit -m "Added basic posts list template and static data."
+git push
 
 
 
