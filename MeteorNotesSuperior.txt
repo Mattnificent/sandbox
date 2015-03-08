@@ -29,6 +29,11 @@ http://docs.mongodb.org/manual/reference/sql-comparison/
 + Connection string format
 http://docs.mongodb.org/manual/reference/connection-string/
 
++ git
++-----------------------------------------
+http://gitref.org
+
+
 
 + Applications
 ++++++++++++++++++++++++++++++++++++++++++++++++
@@ -40,12 +45,37 @@ http://104.131.177.138:3000/
 +-----------------------------------------
 
 
+01c21b889e360b46bae0aa850f5a7c1d1add0a15
 
-Code that works
-=======================================================
 
-# bash
-################################################
+#########################################################
+# 						bash code						#
+#########################################################
+
+# git
+######################################################
+
+# clone github repo
+#---------------------------------------------------
+git clone https://github.com/Mattnificent/sandbox.git
+# in some root directory (don't mkdir)
+
+# first add
+#---------------------------------------------------
+cd sandbox/
+meteor create microscope
+git add microscope
+git commit -m "meteor create microscope; git add microscope"
+
+
+# subsequent add's
+#---------------------------------------------------
+git add .
+git commit -m "copiedMessage"
+git push
+
+
+
 
 # Find mongodb port
 #------------------------------------------
@@ -55,8 +85,6 @@ cat /.meteor/local/db/METEOR-PORT
 #------------------------------------------
 mongodump -h 127.0.0.1:3001 -d meteor -o meteor
 # -h = host, -d = database name, -o = dump folder name
-
-
 
 
 // meteor

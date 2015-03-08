@@ -1,0 +1,56 @@
+
+# clone github repo
+#---------------------------------------------------
+git clone https://github.com/Mattnificent/sandbox.git
+# in some root directory (don't mkdir)
+
+# first add
+#---------------------------------------------------
+cd sandbox/
+meteor create microscope
+git add microscope
+git commit -m "meteor create microscope; git add microscope"
+
+
+# subsequent add's
+#---------------------------------------------------
+
+mkdir client
+echo "This directory only runs on the client." > client/README
+
+mkdir server
+echo "This directory only runs on the server." > server/README
+
+mkdir public
+echo "This directory is for static assets (fonts, images, etc.)." > public/README
+
+mkdir lib
+echo "This directory is loaded before anything else" > lib/README
+
+cd client
+touch main.html
+touch main.js
+echo "main.* file is loaded after everything else." >> README
+
+mkdir stylesheets
+nano stylesheets/style.css
+
+###### Copy the stylesheet	######
+###### ctrl + v into nano	######
+###### ctrl + x to exit		######
+###### y to save			######
+
+cd ..
+
+git add -A
+git commit -m "Re-arranged file structure."
+git push
+
+
+
+
+
+
+
+
+

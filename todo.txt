@@ -2,9 +2,12 @@ TO DO:
 -------------------------------------------------------
 [ ] 
 
+git config --global user.name "mattnificent"
+
+git config --global user.email "mattbeckondeck@gmail.com"
 
 
-
+git clone https://github.com/Mattnificent/sandbox.git
 
 
 
