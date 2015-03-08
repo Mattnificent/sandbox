@@ -113,6 +113,65 @@ git push
 
 
 
+#	3.2 - domain helper
+###################################################################
+
+nano post_item.js
+
+###### Copy the HTML			######
+###### ctrl + v into nano		######
+###### ctrl + x to exit			######
+###### y to save				######
+###### enter to accept filename	######
+
+
+
+git add -A
+git commit -m "3-2: Setup a domain helper on the postItem."
+git push
+
+
+
+###################################################################
+# Chapter 4: Collections
+#
+#	Learn about Meteor's templating language, Spacebars.
+#	Create your first three templates.
+#	Learn how Meteor managers work.
+#	Get a basic prototype working with static data.
+###################################################################
+
+#	4.1 - Create a Collection
+##########################################################
+cd ../../..
+
+mkdir lib/collections
+nano lib/collections/posts.js
+
+Posts = new Mongo.Collection('posts');
+
+###### ctrl + x to exit			######
+###### y to save				######
+###### enter to accept filename	######
+
+git add -A
+git commit -m "4-1: Added a posts collection."
+git push
+
+#	4.1 - Create a Collection
+##########################################################
+
+meteor mongo
+db.posts.insert({title: "A new post"});
+db.posts.find();
+
+
+
+
+
+
+
+
 
 
 

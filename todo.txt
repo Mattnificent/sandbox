@@ -4,52 +4,5 @@ TO DO:
 
 
 
-Notes:
-=====================================================
-
-Templating (with Spacebars)
--------------------------------------------------
-
-Inclusions 
-	( such as {{> postsList}} )
-	replace the inclusion with the template of the same name 
-
-Expressions 
-	( such as {{title}} )
-	either call
-		property of the current object, or
-		return value of a template helper as
-			defined in the current template's manager 
-
-Template helpers
-	( such as the posts in {{#each posts}} )
-	placeholder for a dynamic value
-
-
-Block helpers
-	( such as	{{#each}}…{{/each}} or 
-				{{#if}}…{{/if}} 			)
-	control the flow of the template
-
-
-helpers === controllers  &&  templates === view ???
-^^ not quite
-
-
-
-
-Templates
-	Have a name
-		{{> postsList}}					in main.html		- View
-		<template name="postsList">		in posts_list.html	- Template
-		Template.postsList.helpers()	in posts_list.js	- Helper
-	Have helpers
-		{ posts: postsData	}
-
-
-
-
-
-
 
 
