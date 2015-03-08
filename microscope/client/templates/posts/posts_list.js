@@ -1,3 +1,6 @@
+//  postsList Helpers
+//    posts Helper
+
 var postsData = [
   {
     title: 'Introducing Telescope',
@@ -12,6 +15,7 @@ var postsData = [
     url: 'http://themeteorbook.com'
   }
 ]; 
+
 Template.postsList.helpers({
   posts: postsData
 });
