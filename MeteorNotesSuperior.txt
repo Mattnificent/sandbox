@@ -180,3 +180,19 @@ Shells:
 		OPEN IN TERMINAL WITH: meteor mongo
 		meteor mongo myApp # for apps on meteor.com
 
+
+
+Mongo in the browser is a subset of the server database:
+	This is called MiniMongo
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -162,8 +162,89 @@ git push
 ##########################################################
 
 meteor mongo
+
+##############################################
+# Mongo Console
+##############################################
+
 db.posts.insert({title: "A new post"});
 db.posts.find();
+
+
+##############################################
+# GO TO THE BROWSER CONSOLE!!!!!!!!
+##############################################
+Posts.findOne();
+Posts.find().count();
+Posts.insert({title: "A second post"});
+Posts.find().count();
+
+##############################################
+
+
+##############################################
+# Back to the Mongo Console
+##############################################
+
+db.posts.find();
+
+###### ctrl + c to exit				######
+###### ctrl + c on running service	######
+
+meteor reset
+
+
+# Seed database if empty
+##############################################
+
+nano server/fixtures.js
+
+if (Posts.find().count() === 0) {
+  Posts.insert({
+    title: 'Introducing Telescope',
+    url: 'http://sachagreif.com/introducing-telescope/'
+  });
+
+  Posts.insert({
+    title: 'Meteor',
+    url: 'http://meteor.com'
+  });
+
+  Posts.insert({
+    title: 'The Meteor Book',
+    url: 'http://themeteorbook.com'
+  });
+}
+
+###### ctrl + x to exit			######
+###### y to save				######
+###### enter to accept filename	######
+
+
+git add -A
+git commit -m "4-2: Added data to the posts collection."
+git push
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
