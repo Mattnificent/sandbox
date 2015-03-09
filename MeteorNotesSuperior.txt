@@ -108,166 +108,75 @@ mongodump -h DBHOST -d DBNAME -u USER -p PASSWORD
 meteor mongo --url METEOR_APP_URL
 	
 
-
-Every command to develop app:
---------------------------------------------
-
-
-
-mongodb://client-7dd6b4f4:0b8c2d07-6345-7adc-cc6f-a150d2c87b62@production-db-d2.meteor.io:27017/emetodo_meteor_com
-
-
->mongoimport -h meteor.m0.mongolayer.com:27017 -u client -p e63aaade-xxxx-yyyy-93e4-de0c1b80416f --db meteor --collection kanji --type csv --file c:\kanjifinder\kanjifinder.csv --headerline
-
-
-
-to get access credentials to my deployed mongo app, but I can't get mongoimport to work with the credentials. I think I just don't exactly understand which part is the username, password and client. Could you break it down for me?
-
-result from server (I modified it to obfuscate the real values):
-
-mongodb://client:e63aaade-xxxx-yyyy-93e4-de0c1b80416f@meteor.m0.mongolayer.com:27017/kanjifinder_meteor_com
-
-my mongoimport attempt (fails authentication):
-
-C:\mongodb\bin>mongoimport -h meteor.m0.mongolayer.com:27017 -u client -p e63aaade-xxxx-yyyy-93e4-de0c1b80416f --db meteor --collection kanji --type csv --file c:\kanjifinder\kanjifinder.csv --headerline
-
-mongodb meteor
-shareeditflag
 	
-asked Mar 12 '13 at 18:19
-Max Hodges
-1,0801533
-	
-add a comment
-2 Answers
-active oldest votes
-up vote 3 down vote
-	
-mongo 127.0.0.1:3001
 
-drooplit:3001
-
-use mydb
-
-db
-
-show dbs
-
-use mydb
-
-show collections
-
-system.indexes
-testData
-
-meteor:PRIMARY> db.testData.find()
-{ "_id" : ObjectId("54fb39cea4517479352399ca"), "name" : "mongo" }
-{ "_id" : ObjectId("54fb39d1a4517479352399cb"), "x" : 3 }
-
-
-
-
-
-	http://stackoverflow.com/questions/15369034/how-to-mongoimport-data-to-deployed-meteor-app
-	
-Using mongodump and mongorestore also works:
-
-    Dump data from existing mongodb (mongodb url: mongodb://USER:PASSWORD@DBHOST/DBNAME)
-
-    mongodump -h DBHOST -d DBNAME -u USER -p PASSWORD
-	
-	mongodump -h production-db-d2.meteor.io:27017
 	
 	
-    This will create a "dump" directory, with all the data going to dump/DBNAME.
+	
+	
+	
+Notes:
+=====================================================
 
-    Get the mongodb url for the deployed meteor app (i.e. www.mymeteorapp.com)
+Templating (with Spacebars)
+-------------------------------------------------
 
-    meteor mongo --url METEOR_APP_URL
+Inclusions 
+	( such as {{> postsList}} )
+	replace the inclusion with the template of the same name 
 
-    Note: the PASSWORD expires every min.
+Expressions 
+	( such as {{title}} )
+	either call
+		property of the current object, or
+		return value of a template helper as
+			defined in the current template's manager 
 
-    Upload the db dump data to the meteor app (using an example meteor db url)
-
-    mongorestore -u client -p dcc56e04-a563-4147-eff4-5ae7c1253c9b -h production-db-b2.meteor.io:27017 -db www_mymeteorapp_com dump/DBNAME/
-
-    All the data should get transferred!
-
-
-
-
-
-meteor mongo --url emetodo.meteor.com
-
-# get meteor db url, username, and password
-meteor mongo --url myapp.meteor.com
-
-# -h = host, -d = database name (app domain), -p = password, folder = the path to the dumped db
-mongorestore -u client -h c0.meteor.m0.mongolayer.com:27017 -d myapp_meteor_com -p 'password' folder/
-
-mongorestore -u client -h production-db-d2.meteor.io:27017 -d myapp_meteor_com  
-
-mongodb://client-7dd6b4f4:0b8c2d07-6345-7adc-cc6f-a150d2c87b62@production-db-d2.meteor.io:27017/emetodo_meteor_com
-
-sh
+Template helpers
+	( such as the posts in {{#each posts}} )
+	placeholder for a dynamic value
 
 
+Block helpers
+	( such as	{{#each}}…{{/each}} or 
+				{{#if}}…{{/if}} 			)
+	control the flow of the template
 
-Two simple scripts to make backups of collections on your remote meteor installation and to convert the result into csv. Since the Meteor provided hosting rotates the password to your MongoDB every few minutes, this beats having to do really annoying copy-paste operations.
 
-To install using npm:
+helpers === controllers  &&  templates === view ???
+^^ not quite
 
-sudo npm install -g meteor-db-utils
 
-(This is a global installation, which you probably want for a command line tool like this.)
+Templates
+	Have a name
+		{{> postsList}}					in main.html		- View
+		<template name="postsList">		in posts_list.html	- Template
+		Template.postsList.helpers()	in posts_list.js	- Helper
+	Have helpers
+		{ posts: postsData	}
 
-To export/backup JSON files for collections on your production site:
 
-meteor-backup [domain] [collection...]
+		
+Shells:
+	Terminal
+		Called from your operating system.
+		Server-side console.log() calls output here.
+		Prompt: $
+		Also known as: Shell, Bash
+	Browser Console
+		Called from inside the browser, executes JavaScript code.
+		Client-side console.log() calls output here.
+		Prompt: >
+		Also known as: JavaScript Console, DevTools Console
+	Meteor Shell
+		Called from the Terminal with meteor	 shell.
+		Gives you direct access to your app's server-side code.
+		Prompt: >
+	Mongo Shell
+		Called from the Terminal with meteor mongo.
+		Gives you direct access to your app's database.
+		Prompt: >.
+		Also know as: Mongo Console
+		OPEN IN TERMINAL WITH: meteor mongo
+		meteor mongo myApp # for apps on meteor.com
 
-e.g.
-
-meteor-backup examples.meteor.com users
-
-You can list multiple collections, they will be exported to separate files.
-
-Options:
-
--d [dir]
-
-Specify the directory to save to.
-
---prefix [prefix]
---postfix [postfix]
-
-Append or prepend a string to your JSON filenames (the name of the collection is the base name). You can use this to datestamp your export for instance.
-
-Keep in mind:
-
-    mongoexport has to be available on your command line, this is not installed automatically
-    This has been tested with a Meteor 0.8.0 installation, it probably does not work with earlier (0.6.5) ones.
-
-meteor-json2csv
-
-It also includes a pretty cool script to convert the result to a CSV file.
-
-Usage of the conversion script:
-
-meteor-json2csv <inputfile> [outputfile]
-
-Outputfile is optional, the script will write to the console if no outputfile is specified.
-
-This script will "flatten" any subdocuments and arrays. So, objects like:
-
-{"name":"Example","subdoc":{"amount":1,"description":"Foo"},"array":["first","second"]}
-
-will be converted into:
-
-"name","subdoc_amount","subdoc_description","array_0","array_1"
-"Example","1","Foo","first","second"
-
-before being converted into a CSV line. Yes, this works recursively and yes, content with the same key is gathered in the same column.
-
-You can probably use this script for other JSON to CSV conversions as well, as long as they use the same structure as mongoexport created files. For instance, every document is listed on a different line, not as an element in a large array.
-
-The scripts are written in Coffeescript, any improvements are welcome!
