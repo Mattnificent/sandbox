@@ -18,6 +18,15 @@ Router.route('/posts/:_id', {
 
 });
 
+Router.route('/posts/:_id/edit', {
+  
+  name: 'postEdit',
+  
+  // Return the first post with the post id 
+  data: function() {
+    return Posts.findOne(this.params._id); }
+});
+
 Router.route('/submit', { name: 'postSubmit'});
 
 // Hook to render accessDenied if not user
